@@ -1,0 +1,53 @@
+import React, { Component } from 'react';
+
+class Bet extends Component {
+
+    constructor(props) {
+        super(props);
+    }
+
+    formatDate (date) {
+        const d = new Date(date);
+        return d.getDate()+'/'+(d.getMonth()+1)+'/'+d.getFullYear()
+    }
+    render() {
+        return(<div className="col-sm-4">
+                <div className="bet">
+                    <div className="panel panel-default">
+                        <div className="panel-heading">
+                            <h3 className="panel-title">{this.props.bet.predictionType}</h3>
+                        </div>
+                        <div className="panel-body">
+                            <div className="grid team">
+                                <h2>{this.props.bet.home}</h2>
+                            </div>
+                            <div className="versus"><span className="divider"></span><span>V</span></div>
+                            <div className="grid team">
+                                <h2>{this.props.bet.away}</h2>
+                            </div>
+                            <div className="band">
+                                <p className="country">
+                                    <img src={'/style/flags/' + this.props.bet.country.toLowerCase() + '.svg'} />
+                                    
+                                    </p>
+                                <p>{this.props.bet.league}</p>
+                                <p className="date">{this.formatDate( this.props.bet.eventDate )}</p>
+                            </div>
+                            
+                            <div>
+                                <div className="prediction">{((this.props.bet.prediction == 1 ?
+                                    'home':'away')+' win').toUpperCase()}</div>
+                            </div>
+                            <div>
+                                <div className="confidence">{this.props.bet.confidence}</div>
+                                <div className="grid odds">{this.props.bet.betfair? this.props.bet.betfair.price : '-'}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+}
+
+export default Bet;
