@@ -19,7 +19,7 @@ class Signup extends Component {
     }
     
     render(){
-        const { handleSubmit, fields: {email, password, passwordConfirm}} = this.props;
+        const { handleSubmit, fields: {email, password, passwordConfirm, userName}} = this.props;
         
         return <div className="centered">
                 <div className="tabs">
@@ -31,8 +31,12 @@ class Signup extends Component {
                 <div className="box">
                     <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))} className="form-horizontal">
                         <fieldset className="form-group">
+                            <label className="col-sm-2 control-label">Username:</label>
+                            <div className="col-sm-10"><input className="form-control" {...userName} /></div>
+                        </fieldset>
+                        <fieldset className="form-group">
                             <label className="col-sm-2 control-label">Email:</label>
-                            <div className="col-sm-10"><input className="form-control" {...email} /></div>
+                            <div className="col-sm-10"><input type="email" className="form-control" {...email} /></div>
                         </fieldset>
                         <fieldset className="form-group">
                             <label className="col-sm-2 control-label">Password:</label>
@@ -74,6 +78,6 @@ function mapStateToProps(state) {
 }
 
 export default reduxForm({ form : 'signup',
-fields: ['email', 'password', 'passwordConfirm'],
+fields: ['email', 'password', 'passwordConfirm', 'userName'],
 validate
 }, mapStateToProps, actions)(Signup);
