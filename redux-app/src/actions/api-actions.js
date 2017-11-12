@@ -1,15 +1,17 @@
 import axios from 'axios';
+import config from 'config';
 
 export const FETCH_BETS = 'fetch_bets';
 export const SAVE_BET = 'save_bet';
 export const DELETE_BET = 'delete_bet';
 export const FILTER_BETS = 'filter_bets';
-const ROOT_URL = '/api/v1/';
+const BASE_URL = config[process.env.NODE_ENV || 'dev'].baseurl || '/';
+const ROOT_URL = 'api/v1/';
 const TOKEN = '?token=';
 
 export function fetchBets(type) {
     const t = localStorage.getItem('token') || '';
-    let url = `${ROOT_URL}/bets${TOKEN}${t}`
+    let url = `${BASE_URL}${ROOT_URL}bets${TOKEN}${t}`
     if( type === 'errors'){
         url += '&betfair=false';
     }
@@ -23,7 +25,7 @@ export function fetchBets(type) {
 
 export function saveBet(bet) {
     const t = localStorage.getItem('token') || '';
-    let url = `${ROOT_URL}bets/${bet._id}/edit${TOKEN}${t}`
+    let url = `${BASE_URL}${ROOT_URL}bets/${bet._id}/edit${TOKEN}${t}`
     
     let request = axios.patch(url, bet)
     return {

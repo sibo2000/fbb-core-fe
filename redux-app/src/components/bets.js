@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import {fetchBets, removeBet, saveBet, filterBets} from '../actions/api-actions'
 import Bet from './bet';
-import EditableBets from './editableBet';
 import { bindActionCreators } from 'redux';
 import Editable from './editable';
 

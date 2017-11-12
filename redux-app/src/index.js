@@ -11,10 +11,7 @@ import Signin from './components/auth/signin';
 import Signout from './components/auth/signout';
 import Signup from './components/auth/signup';
 import RequireAuth from './components/auth/require_auth';
-import Feature from './components/feature';
-import Welcome from './components/welcome';
 import Bets from './components/bets';
-import BetsContainer from './components/betsContainer';
 import Admin from './components/admin';
 import reducers from './reducers';
 import { AUTH_USER } from './actions/types';
@@ -32,11 +29,10 @@ ReactDOM.render(
 <Provider store={store}>
   <Router history={browserHistory}>
     <Route path="/" component={App}>
-      <IndexRoute component={Welcome}/>
+      <IndexRoute component={App}/>
       <Route path="signin" component={Signin} />
       <Route path="signout" component={Signout} />
       <Route path="signup" component={Signup} />
-      <Route path="feature" component={RequireAuth(Feature)} />
       <Route path="bets" component={Bets} />
       <Route path="admin" component={Admin} />
     </Route>

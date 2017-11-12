@@ -6,13 +6,13 @@ class Header extends Component {
     renderLinks() {
         if( this.props.authenticated ) {
             return [
-            <li className="">
+            <li className="" key={1}>
                 <Link className="" to="/bets">Bets</Link>
             </li>,
-            <li className="">
+            <li className="" key={2}>
                 <Link className="" to="/admin">Admin</Link>
             </li>,
-            <li className="">
+            <li className="" key={3}> 
                 <Link className="" to="/signout">Sign Out</Link>
             </li>
             ]
