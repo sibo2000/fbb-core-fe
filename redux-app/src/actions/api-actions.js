@@ -4,10 +4,12 @@ export const FETCH_BETS = 'fetch_bets';
 export const SAVE_BET = 'save_bet';
 export const DELETE_BET = 'delete_bet';
 export const FILTER_BETS = 'filter_bets';
-const ROOT_URL = 'http://localhost:3002/api/v1/';
-const API_KEY = '?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjU5YTliZGYyNDE3ZjQyNGFjMmVhMzM0MyIsInVzZXJOYW1lIjoic3RldmVwMTI0IiwicGFzc3dvcmQiOiIkMmEkMTAka25DNDV6YklYejhUWDBCRUVuaWhQLi54LkpidEJTdXVnaHlNTTZGZ1RLYzZUTVJUckpBY0siLCJlbWFpbCI6InN0ZXBoZW4ucGVycnk4M0BnbWFpbC5jb20iLCJfX3YiOjB9LCJpYXQiOjE1MDcxODc0MjQsImV4cCI6MTUwNzE5NDYyNH0.rnP6u4aFby5x-BJIC385XtS_8dVUNNrAGe0HbeO_Dho';
+const ROOT_URL = '/api/v1/';
+const TOKEN = '?token=';
+
 export function fetchBets(type) {
-    let url = `${ROOT_URL}/bets${API_KEY}`
+    const t = localStorage.getItem('token') || '';
+    let url = `${ROOT_URL}/bets${TOKEN}${t}`
     if( type === 'errors'){
         url += '&betfair=false';
     }
@@ -20,7 +22,8 @@ export function fetchBets(type) {
 }
 
 export function saveBet(bet) {
-    let url = `${ROOT_URL}bets/${bet._id}/edit${API_KEY}`
+    const t = localStorage.getItem('token') || '';
+    let url = `${ROOT_URL}bets/${bet._id}/edit${TOKEN}${t}`
     
     let request = axios.patch(url, bet)
     return {
