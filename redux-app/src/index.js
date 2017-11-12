@@ -37,7 +37,7 @@ ReactDOM.render(
       <Route path="signout" component={Signout} />
       <Route path="signup" component={Signup} />
       <Route path="feature" component={RequireAuth(Feature)} />
-      <Route path="bets" component={BetsContainer} />
+      <Route path="bets" component={Bets} />
       <Route path="admin" component={Admin} />
     </Route>
   </Router>

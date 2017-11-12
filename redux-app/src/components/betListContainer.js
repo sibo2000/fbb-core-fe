@@ -11,12 +11,10 @@ class BetListContainer extends Component {
     }
 
     componentDidMount() {
-        console.log('componentDidMount')
         this.props.fetchBets(this.props.type);
     }
 
     onRemove(id) {
-      console.log(id)
     }
 
     render() {

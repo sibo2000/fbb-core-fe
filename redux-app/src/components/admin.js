@@ -8,9 +8,6 @@ class Admin extends Component {
     render() {
         return (
             <div>
-                <div className="row heading">
-                    <div className="col-sm-12"><h1>Admin</h1></div>
-                </div>
                 <Bets type="errors"/>
             </div>
         )

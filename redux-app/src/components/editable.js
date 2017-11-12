@@ -45,6 +45,7 @@ class Editable extends Component {
     render() {
         if(!this.state.bet) return <div></div>
         return(
+        <div className="col-sm-12">
         <div className="row editable-bet">
             <div className="col-sm-2">
                 <p>{this.formatDate(this.state.bet.eventDate)}</p>
@@ -57,7 +58,6 @@ class Editable extends Component {
                 <input className="form-control" type="text" value={this.state.bet.home} name="home" onChange={this.onChange}/>
                 }
             </div>
-
             <div className="col-sm-2">
                 {
                 !this.state.editing?
@@ -65,7 +65,6 @@ class Editable extends Component {
                 <input className="form-control"  type="text" value={this.state.bet.away} name="away" onChange={this.onChange}/>
                 }
             </div>
-
             <div className="col-sm-2">
                 {
                 !this.state.editing?
@@ -92,7 +91,7 @@ class Editable extends Component {
                 : <button className="btn btn-primary" onClick={this.onEdit.bind(this)}>Edit</button>
                 }
             </div>        
-        </div>)
+        </div></div>)
     }
 
 }

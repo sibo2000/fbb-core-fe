@@ -11,7 +11,9 @@ class Bet extends Component {
         return d.getDate()+'/'+(d.getMonth()+1)+'/'+d.getFullYear()
     }
     render() {
-        return(<div className="col-sm-4">
+        if(!this.props.bet)return<div></div>
+        return(
+        <div className="col-sm-3">
                 <div className="bet">
                     <div className="panel panel-default">
                         <div className="panel-heading">
@@ -27,18 +29,20 @@ class Bet extends Component {
                             </div>
                             <div className="band">
                                 <p className="country">
-                                    <img src={'/style/flags/' + this.props.bet.country.toLowerCase() + '.svg'} />
+                                { this.props.bet.country
+                                && <img src={'/style/flags/' + this.props.bet.country.toLowerCase() + '.svg'} /> }
                                     
                                     </p>
-                                <p>{this.props.bet.league}</p>
+                                <p className="league"><span>{this.props.bet.league}</span></p>
                                 <p className="date">{this.formatDate( this.props.bet.eventDate )}</p>
                             </div>
                             
                             <div>
                                 <div className="prediction">{((this.props.bet.prediction == 1 ?
                                     'home':'away')+' win').toUpperCase()}</div>
+                                <div className="type">{this.props.bet.type}</div>
                             </div>
-                            <div>
+                            <div className="footer">
                                 <div className="confidence">{this.props.bet.confidence}</div>
                                 <div className="grid odds">{this.props.bet.betfair? this.props.bet.betfair.price : '-'}</div>
                             </div>

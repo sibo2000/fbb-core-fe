@@ -1,26 +1,53 @@
 //@import url('https://fonts.googleapis.com/css?family=Noto+Sans');
+html, body {
+  height: 100%;
+}
 
 body {
   background-color: #32323e;
   font-family: 'Noto Sans', sans-serif;
 }
 
+.app {
+  position: relative;
+}
+
 header {
   background-color: rgba(0,0,0,0.5);
-  min-height: 80px;
+  text-align: left;
+  div {
+    
+
+    ul.nav-pills {
+      padding: 15px 0;
+      float: right;
+      li > a {
+        font-weight: bold;
+        color: #FFFFFF;
+        &:hover, &:active, &:focus{
+          border-radius: 0;
+          background-color: #FFB80C;
+          color: #323232;
+        }
+      }
+    }
+  }
 }
 
 .heading {
   text-align: left;
+  margin-bottom: 40px;
 
   h1 {
-    padding: 20px 0;
+    padding: 5px 0;
   }
+  
 }
 
 h1 {
   color: #FFFFFF;
-  margin: 0; padding: 20px;
+  margin: 0; padding: 20px 0;
+  font-size: 2em;
 }
 
 h2 {
@@ -47,19 +74,18 @@ label {
 
 .centered {
   position: absolute;
-  top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translateX(-50%);
 }
 
 .box {
   border: 1px solid #EEE;
-  padding: 70px 50px;
+  padding: 70px 50px 40px;
   background: #EEEEEE;
 }
 
 .content {
-  // padding: 24px;
+   padding: 50px 0;
 }
 .tabs {
   ul {
@@ -87,7 +113,7 @@ label {
 
       a {
         display: block;
-        padding: 10px;
+        padding: 5px 10px;
         color: #323232;
         &:hover {
           text-decoration: none;
@@ -97,11 +123,13 @@ label {
   }
 }
 
-.list-inline>li {
-  width: 50%;
-  text-align: center;
-  background-color: #ddd;
-  padding: 5px 10px;
+.tabs{
+  .list-inline>li {
+    width: 50%;
+    text-align: center;
+    background-color: #ddd;
+    padding: 5px 10px;
+  }
 }
 
 form {
@@ -142,7 +170,7 @@ form {
   width: 100%;
   float: left;
   text-align: center;
-  padding: 10px 5px;
+  padding: 0;
 
   &:not(:last-child) {
     border-right: 1px solid rgba(255,255,255,0.25)
@@ -156,7 +184,14 @@ form {
   color: #323232;
   float: left;
   padding: 10px 0;
-  width: 100%;
+  width: 50%;
+}
+
+.type {
+  float: left;
+  width: 50%;
+  text-transform: uppercase;
+  padding: 10px 0;
 }
 
 .navbar {
@@ -205,6 +240,12 @@ form {
     background: linear-gradient(180deg, rgba(65, 65, 85, 0.5) 0%,rgba(0,0,0,0.65) 100%);
     border: 1px solid rgba(145, 145, 145, 0.5);
   }
+
+  .footer {
+    float: left;
+    width: 100%;
+    border-top: 1px solid rgba(145, 145, 145, 0.5);
+  }
 }
 
 fieldset:last-of-type {
@@ -223,6 +264,7 @@ fieldset:last-of-type {
   
   &.team {
     height: 60px;
+    position: relative;
     //&:first-of-type {
       // border-right: 1px solid #F5F5F5;
       // border-right: 1px solid rgba(255, 255, 255, 0.25);
@@ -234,9 +276,10 @@ fieldset:last-of-type {
   }
 
   h2 {
-    position: relative;
+    position: absolute;
     top: 50%;
-    transform: translateY(-50%);
+    left: 50%;
+    transform: translate(-50%,-50%);
     margin: 0;
   }
 }
@@ -300,11 +343,20 @@ fieldset:last-of-type {
 .band p {
     text-align: center;
     margin:0;
-    padding: 10px 15px;
+    padding: 10px;
     float: left;
     height: 40px;
     font-size: 0.9em;
+
+    &.league {
+        white-space: nowrap;
+        overflow: hidden;
+        max-width: 100px;
+        text-overflow: ellipsis;
+    }
 }
+
+
 
 .band p.country {
   border: 1px solid #F5F5F5;
@@ -327,7 +379,8 @@ fieldset:last-of-type {
 .editable-bet {
   background: #F5F5F5;
   margin-bottom: 20px;
-  padding: 5px;
+  padding: 5px 0;
+  margin-left: 0; margin-right: 0;
 
   p {
     margin: 0;
@@ -364,4 +417,48 @@ fieldset:last-of-type {
       }
     }
   }
+
+  
+}
+
+.version {
+  position: absolute;
+  bottom:0;
+  right:0;
+  background-color: #EEEEEE;
+  color: #323232;
+  font-size: 1em;
+  padding: 10px;
+}
+
+.filters {
+  margin: 0;
+  float: right;
+  > li {
+    &:last-child {
+      padding-right: 0;
+    }
+    a {
+      display: block;
+      padding: 10px 20px;
+      background-color: #FFB80C;
+      color: #32323e;
+      border: 1px solid transparent;
+      font-weight: bold;
+      &:hover, &:active, &:focus  {
+        background-color:#32323e; 
+        color: #FFB80C;
+        text-decoration: none;
+        border: 1px solid #FFB80C;
+      }
+    }
+  }
+}
+
+.list-heading {
+  padding-left: 0;
+}
+
+.list-filters {
+ padding-right: 0;
 }

@@ -26,7 +26,6 @@ function signIn(type,params) {
             browserHistory.push('/bets');
         })
         .catch(response => {
-            console.log(response);
             const message = type == 'signin' ? 'Please enter some data' : response.data.error
             dispatch(authError(message));
         })
@@ -38,11 +37,9 @@ function signUp(type,params) {
         axios.post(`${APP_URL}/${type}`, params)
         .then(response => {
             dispatch({ type: AUTH_USER });
-            console.log(response.data.message);
             browserHistory.push('/signin');
         })
         .catch(response => {
-            console.log(response);
             const message = type == 'signin' ? 'Please enter some data' : response.data.error
             dispatch(authError(message));
         })
