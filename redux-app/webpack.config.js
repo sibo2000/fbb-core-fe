@@ -43,7 +43,8 @@ module.exports = {
   ],
   devServer: {
     historyApiFallback: true,
-    contentBase: './'
+    contentBase: './',
+    disableHostCheck: true
   },
   externals : {
     config: JSON.stringify(require('./env.json')), //eslint-disable-line
