@@ -2,6 +2,7 @@ import axios from 'axios';
 import config from 'config';
 
 export const FETCH_BETS = 'fetch_bets';
+export const FETCH_BETS_DATE = 'fetch_bets_date';
 export const SAVE_BET = 'save_bet';
 export const DELETE_BET = 'delete_bet';
 export const FILTER_BETS = 'filter_bets';
@@ -21,6 +22,42 @@ export function fetchBets(type) {
         type : FETCH_BETS,
         payload: request
     }
+}
+
+export function fetchBetsByDate(time) {
+    var today = new Date()
+    var today1 = new Date()
+    today1.setDate(today.getDate()+1)
+    var today2 = new Date()
+    today2.setDate(today.getDate()+2)
+    var today3 = new Date()
+    today3.setDate(today.getDate()+3)
+    
+    const t = localStorage.getItem('token') || '';
+    let url = `${BASE_URL}${ROOT_URL}bets${TOKEN}${t}`;
+    var query = '';
+    switch(time) {
+        case 'DATE_TODAY':
+        query = `&dateStart=${formatDate(today)}&dateEnd=${formatDate(today1)}`;
+        break;
+        case 'DATE_TODAY+1':
+        query = `&dateStart=${formatDate(today1)}&dateEnd=${formatDate(today2)}`;
+        break;
+        case 'DATE_TODAY+2':
+        query = `&dateStart=${formatDate(today2)}&dateEnd=${formatDate(today3)}`;
+        break;
+    }
+    
+    let request = axios.get(url+query)
+    
+    return {
+        type : FETCH_BETS_DATE,
+        payload: request
+    } 
+}
+
+function formatDate(date) {
+    return date.toLocaleDateString().replace('/','-');
 }
 
 export function saveBet(bet) {

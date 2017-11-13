@@ -7,13 +7,11 @@ import config from 'config';
 
 export function signinUser({email, password}) {
     var params = {email, password}
-    params.secret = config.secret;
     return signIn('signin',params);
 }
 
-export function signupUser({email, password, userName}) {
-    var params = {email, password, userName}
-    params.secret = config.secret;
+export function signupUser({email, password, userName, secret}) {
+    var params = {email, password, userName, secret}
     return signUp('signup', params);
 }
 
@@ -26,7 +24,7 @@ function signIn(type,params) {
             browserHistory.push('/bets');
         })
         .catch(response => {
-            const message = type == 'signin' ? 'Please enter some data' : response.data.error
+            const message = type == 'signin' ? 'Api Error' : response.data.error
             dispatch(authError(message));
         })
     }

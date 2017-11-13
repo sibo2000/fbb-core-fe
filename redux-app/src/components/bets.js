@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import {fetchBets, removeBet, saveBet, filterBets} from '../actions/api-actions'
+import {fetchBets, removeBet, saveBet, filterBets, fetchBetsByDate} from '../actions/api-actions'
 import Bet from './bet';
 import { bindActionCreators } from 'redux';
 import Editable from './editable';
@@ -29,11 +29,14 @@ class Bets extends Component {
         this.props.filterBets(filter);
     }
 
+    fetchBets = (time) => {
+        this.props.fetchBetsByDate(time);
+    }
+
     filteredBets = () => {
         var bets = this.props.bets.bets
         switch(this.props.bets.filter) {
             case 'SHOW_BANKERS':
-            
                 bets = bets.filter((bet)=> {
                     return bet.type === 'banker'
                 })
@@ -58,25 +61,60 @@ class Bets extends Component {
                     return bet.betfair != null
                 })
             break;
+            case 'DATE_TODAY':
+                bets = bets.filter((bet)=> {
+                    var d = new Date()
+                    var eventDate = new Date(bet.eventDate)
+                    return d.toDateString() === eventDate.toDateString()
+                })
+            break;
+            case 'DATE_TODAY':
+                bets = bets.filter((bet)=> {
+                    var d = new Date()
+                    var eventDate = new Date(bet.eventDate)
+                    return d.toDateString() === eventDate.toDateString()
+                })
+            break;
+            case 'DATE_TODAY+1':
+            bets = bets.filter((bet)=> {
+                var d = new Date()
+                d.setDate(d.getDate() +1);
+                var eventDate = new Date(bet.eventDate)
+                return d.toDateString() === eventDate.toDateString()
+            })
+            break;
+            case 'DATE_TODAY+2':
+            bets = bets.filter((bet)=> {
+                var d = new Date()
+                d.setDate(d.getDate() +2);
+                var eventDate = new Date(bet.eventDate)
+                return d.toDateString() === eventDate.toDateString()
+            })
+            break;
+            
+                    
         
         }
-
         return bets;
     }
 
     renderBets() {
         
         if(!this.props.bets.bets) return <div></div>;
-        return this.filteredBets().map((bet,index)=> {
+        return this.filteredBets().map((bet,index)=>{
+                
+                    
+                    switch(this.props.type) {
+                        case 'errors':
+                            return <Editable key={index} bet={bet} {...this.props} onRemove={this.onRemove} onSave={this.onSave} />
+                        break;
+                        default:
+                            return <Bet bet={bet} key={index}/>;
+                    }
+                })
             
-            switch(this.props.type) {
-                case 'errors':
-                    return <Editable key={index} bet={bet} {...this.props} onRemove={this.onRemove} onSave={this.onSave} />
-                break;
-                default:
-                    return <Bet bet={bet} key={index}/>;
-            }
-        })
+            
+        
     }
     
     render() {
@@ -85,12 +123,22 @@ class Bets extends Component {
                     <div className="col-sm-2"><h1>Bets</h1></div>
                     <div className="col-sm-10">
                         <ul className="list-inline filters">
+                            <li><a href="#" onClick={this.filterBets.bind(this,'SHOW_ALL')}>All</a></li>
                             <li><a href="#" onClick={this.filterBets.bind(this,'SHOW_BANKERS')}>Bankers</a></li>
                             <li><a href="#" onClick={this.filterBets.bind(this,'SHOW_VALUES')}>Values</a></li>
                             <li><a href="#" onClick={this.filterBets.bind(this,'SHOW_OTHERS')}>Others</a></li>
                             <li><a href="#" onClick={this.filterBets.bind(this,'SHOW_INBASKET')}>In Basket</a></li>
                             <li><a href="#" onClick={this.filterBets.bind(this,'SHOW_BETFAIR')}>Betfair</a></li>
                             
+                        </ul>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-sm-12">
+                        <ul className="list-inline">
+                            <li><a href="#" onClick={this.fetchBets.bind(this,'DATE_TODAY')}>Today</a></li>
+                            <li><a href="#" onClick={this.fetchBets.bind(this,'DATE_TODAY+1')}>Today+1</a></li>
+                            <li><a href="#" onClick={this.fetchBets.bind(this,'DATE_TODAY+2')}>Today+2</a></li>
                         </ul>
                     </div>
                 </div>
@@ -106,7 +154,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ fetchBets, removeBet, saveBet, filterBets }, dispatch )
+    return bindActionCreators({ fetchBets, removeBet, saveBet, filterBets, fetchBetsByDate }, dispatch )
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Bets);
