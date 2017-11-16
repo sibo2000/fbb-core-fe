@@ -9,13 +9,17 @@ export default function(ComposedComponent) {
 
     componentWillMount() {
       if (!this.props.authenticated) {
-        this.context.router.push('/');
+        //this.context.router.push('/');
+      } else {
+        this.context.router.push('/bets');
       }
     }
 
     componentWillUpdate(nextProps) {
       if (!nextProps.authenticated) {
-        this.context.router.push('/');
+        //this.context.router.push('/');
+      } else {
+        this.context.router.push('/bets');
       }
     }
 

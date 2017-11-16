@@ -17,10 +17,7 @@ class Header extends Component {
             </li>
             ]
         } else {
-            return [
-                <li className="" key={1}><Link className="" to="/signin">Sign In</Link></li>,
-                <li className="" key={2}><Link className="" to="/signup">Sign Up</Link></li>
-            ]
+            return <div></div>
         }
     }
     

@@ -43,7 +43,7 @@ class Signin extends Component {
                     {this.renderAlert()}
                     <div className="form-group">
                         <div className="col-sm-10 col-sm-offset-2">
-                            <button action="submit" className="btn btn-primary">Sign In</button>
+                            <button type="submit" action="submit" className="btn btn-primary">Sign In</button>
                         </div>
                     </div>
                 </form>

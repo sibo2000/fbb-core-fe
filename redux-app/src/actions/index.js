@@ -1,9 +1,9 @@
 import axios from 'axios';
+import config from 'config';
 import { AUTH_USER, AUTH_ERROR, UNAUTH_USER} from './types';
 import { browserHistory } from 'react-router';
-const APP_URL = 'http://localhost:3002/api/v1';
-
-import config from 'config';
+const BASE_URL = config[process.env.NODE_ENV || 'dev'].baseurl || '/';
+const ROOT_URL = 'api/v1/';
 
 export function signinUser({email, password}) {
     var params = {email, password}
@@ -17,7 +17,7 @@ export function signupUser({email, password, userName, secret}) {
 
 function signIn(type,params) { 
     return function(dispatch) {
-        axios.post(`${APP_URL}/${type}`, params)
+        axios.post(`${BASE_URL}${ROOT_URL}/${type}`, params)
         .then(response => {
             dispatch({ type: AUTH_USER });
             localStorage.setItem('token', response.data.token);
@@ -32,7 +32,7 @@ function signIn(type,params) {
 
 function signUp(type,params) { 
     return function(dispatch) {
-        axios.post(`${APP_URL}/${type}`, params)
+        axios.post(`${BASE_URL}${ROOT_URL}/${type}`, params)
         .then(response => {
             dispatch({ type: AUTH_USER });
             browserHistory.push('/signin');
