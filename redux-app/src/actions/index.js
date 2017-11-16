@@ -5,9 +5,6 @@ import { browserHistory } from 'react-router';
 const BASE_URL = config[process.env.NODE_ENV || 'dev'].baseurl || '/';
 const ROOT_URL = 'api/v1/';
 
-
-import config from 'config';
-
 export function signinUser({email, password}) {
     var params = {email, password}
     return signIn('signin',params);
