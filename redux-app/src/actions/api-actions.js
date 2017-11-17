@@ -6,7 +6,7 @@ export const FETCH_BETS_DATE = 'fetch_bets_date';
 export const SAVE_BET = 'save_bet';
 export const DELETE_BET = 'delete_bet';
 export const FILTER_BETS = 'filter_bets';
-const BASE_URL = config[process.env.NODE_ENV || 'dev'].baseurl || '/';
+const BASE_URL = config[config.process || 'dev'].baseurl || '/';
 const ROOT_URL = 'api/v1/';
 const TOKEN = '?token=';
 
