@@ -6,7 +6,6 @@ const BASE_URL = config[config.process || 'dev'].baseurl || '/';
 const ROOT_URL = 'api/v1/';
 
 export function signinUser({email, password}) {
-    console.log(process.env.NODE_ENV, config, BASE_URL);
     var params = {email, password}
     return signIn('signin',params);
 }
