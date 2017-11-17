@@ -2,7 +2,7 @@ import axios from 'axios';
 import config from 'config';
 import { AUTH_USER, AUTH_ERROR, UNAUTH_USER} from './types';
 import { browserHistory } from 'react-router';
-const BASE_URL = config[process.env.NODE_ENV || 'dev'].baseurl || '/';
+const BASE_URL = config[config.process || 'dev'].baseurl || '/';
 const ROOT_URL = 'api/v1/';
 
 export function signinUser({email, password}) {
