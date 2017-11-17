@@ -10,6 +10,8 @@ const BASE_URL = config[process.env.NODE_ENV || 'dev'].baseurl || '/';
 const ROOT_URL = 'api/v1/';
 const TOKEN = '?token=';
 
+console.log(process.env.NODE_ENV, config);
+
 export function fetchBets(type) {
     const t = localStorage.getItem('token') || '';
     let url = `${BASE_URL}${ROOT_URL}bets${TOKEN}${t}`
