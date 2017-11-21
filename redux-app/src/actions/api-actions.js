@@ -57,7 +57,7 @@ export function fetchBetsByDate(time) {
 }
 
 function formatDate(date) {
-    return date.toLocaleDateString().replace('/','-');
+    return date.toLocaleDateString().replace(/\//g, '-');
 }
 
 export function saveBet(bet) {

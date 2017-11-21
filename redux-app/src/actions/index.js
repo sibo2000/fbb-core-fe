@@ -4,8 +4,9 @@ import { AUTH_USER, AUTH_ERROR, UNAUTH_USER} from './types';
 import { browserHistory } from 'react-router';
 const BASE_URL = config[config.process || 'dev'].baseurl || '/';
 const ROOT_URL = 'api/v1/';
-
+console.log(process.env);
 export function signinUser({email, password}) {
+    
     var params = {email, password}
     return signIn('signin',params);
 }
@@ -17,7 +18,7 @@ export function signupUser({email, password, userName, secret}) {
 
 function signIn(type,params) { 
     return function(dispatch) {
-        axios.post(`${BASE_URL}${ROOT_URL}/${type}`, params)
+        axios.post(`${BASE_URL}${ROOT_URL}${type}`, params)
         .then(response => {
             dispatch({ type: AUTH_USER });
             localStorage.setItem('token', response.data.token);
@@ -32,7 +33,7 @@ function signIn(type,params) {
 
 function signUp(type,params) { 
     return function(dispatch) {
-        axios.post(`${BASE_URL}${ROOT_URL}/${type}`, params)
+        axios.post(`${BASE_URL}${ROOT_URL}${type}`, params)
         .then(response => {
             dispatch({ type: AUTH_USER });
             browserHistory.push('/signin');

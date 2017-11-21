@@ -1,25 +1,18 @@
+const webpack = require('webpack');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-
 const extractSass = new ExtractTextPlugin({
-    filename: "./style/[name].css",
-    allChunks: true
+  filename: "./style/[name].css",
+  allChunks: true
 });
-module.exports = env => {
-
-  console.log('NODE_ENV: ', env.NODE_ENV)
-
-  return{
-    entry: [
-    './src/index.js',
-    './style.scss'
-    ],
-    output: {
-      path: __dirname,
-      publicPath: '/',
-      filename: 'bundle.js'
-    },
-    module: {
-      rules: [
+module.exports = {
+   entry: [
+     './src/index.js',
+     './style.scss'
+   ],
+   module: {
+    rules: [
       {
         test: /\.scss$/,
         use: extractSass.extract({
@@ -41,17 +34,18 @@ module.exports = env => {
         }
       }
     ]
-    },
-    plugins: [
-      extractSass
-    ],
-    devServer: {
-      historyApiFallback: true,
-      contentBase: './',
-      disableHostCheck: true
-    },
-    externals : {
-      config: JSON.stringify(require('./env.json')), //eslint-disable-line
-    }
+  },
+   plugins: [
+     extractSass,
+     new webpack.EnvironmentPlugin([
+      'NODE_ENV',
+    ]),
+   ],
+   output: {
+    path: 'build',
+    filename: '[name].bundle.js'
+  },
+  externals : {
+    config: JSON.stringify(require('./env.json')), //eslint-disable-line
   }
-};
+ };
