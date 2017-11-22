@@ -4,11 +4,8 @@ const extractSass = new ExtractTextPlugin({
     filename: "./style/[name].css",
     allChunks: true
 });
-module.exports = env => {
+module.exports = {
 
-  console.log('NODE_ENV: ', env.NODE_ENV)
-
-  return{
     entry: [
     './src/index.js',
     './style.scss'
@@ -53,5 +50,4 @@ module.exports = env => {
     externals : {
       config: JSON.stringify(require('./env.json')), //eslint-disable-line
     }
-  }
-};
+  };
