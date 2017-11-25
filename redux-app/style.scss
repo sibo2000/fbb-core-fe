@@ -25,7 +25,7 @@ header {
       li > a {
         font-weight: bold;
         color: #FFFFFF;
-        &:hover, &:active, &:focus{
+        &.active{
           border-radius: 0;
           background-color: #FFB80C;
           color: #323232;
@@ -134,7 +134,7 @@ label {
 }
 
 form {
-  width: 500px;
+  // width: 500px;
 }
 
 .form-group {
@@ -155,8 +155,8 @@ form {
 }
 
 .form-control {
-  border-radius: 0;
-  border: 0;
+  // border-radius: 0;
+  // border: 0;
 }
 
 .control-label {
@@ -463,4 +463,54 @@ fieldset:last-of-type {
 
 .list-filters {
  padding-right: 0;
+}
+
+label {
+  color: #FFFFFF;
+}
+
+ul li {
+  list-style: none;
+}
+
+.date-filters {
+  margin-bottom: 20px;
+}
+
+.setting-description {
+  padding-top: 10px;
+  font-size: 0.9em;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+  padding: 0;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  background: #F5F5F5;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: #4CAF50;
+  cursor: pointer;
 }

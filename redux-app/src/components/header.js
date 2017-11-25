@@ -3,22 +3,36 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router'
 
 class Header extends Component {
-    renderLinks() {
-        if( this.props.authenticated ) {
-            return [
-            <li className="" key={1}>
-                <Link className="" to="/bets">Bets</Link>
-            </li>,
-            <li className="" key={2}>
-                <Link className="" to="/admin">Admin</Link>
-            </li>,
-            <li className="" key={3}> 
-                <Link className="" to="/signout">Sign Out</Link>
-            </li>
+
+    constructor(props){
+        super(props)
+
+        this.state = {
+            links : [
+                { name: 'Bets', url : '/bets'},
+                { name: 'Admin', url : '/admin', authenticationRequired: true},
+                { name: 'Settings', url : '/settings'},
+                { name: 'Sign In', url : '/signin', authenticationRequired: false},
+                { name: 'Sign Out', url : '/signout', authenticationRequired: true}
             ]
-        } else {
-            return <div></div>
         }
+    }
+
+    renderLinks() {
+         
+            return this.state.links.map((link,index) => {
+                if( link.authenticationRequired === true && !this.props.authenticated
+                || link.authenticationRequired === false && this.props.authenticated ){
+                    return '';
+                } else {
+                return (
+                    <li className="" key={index}>
+                        <Link className="" to={link.url} activeClassName="active">{link.name}</Link>
+                    </li>
+                )
+                }
+            })
+        
     }
     
     render(){
@@ -41,4 +55,6 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(Header)
+export default connect(mapStateToProps,null,null,{
+    pure: false
+  })(Header)

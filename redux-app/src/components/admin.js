@@ -1,5 +1,5 @@
 import React,{ Component } from 'react';
-import Bets from './bets';
+import BetsList from './betsList';
 import { connect } from 'react-redux';
 
 class Admin extends Component {
@@ -7,7 +7,7 @@ class Admin extends Component {
     render() {
         return (
             <div>
-                <Bets type="errors"/>
+                <BetsList type="errors"/>
             </div>
         )
     }

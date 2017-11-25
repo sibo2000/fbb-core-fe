@@ -13,6 +13,7 @@ import Signup from './components/auth/signup';
 import RequireAuth from './components/auth/require_auth';
 import Bets from './components/bets';
 import Admin from './components/admin';
+import Settings from './components/settings';
 import reducers from './reducers';
 import { AUTH_USER } from './actions/types';
 
@@ -29,12 +30,13 @@ ReactDOM.render(
 <Provider store={store}>
   <Router history={browserHistory}>
     <Route path="/" component={App}>
-      <IndexRedirect to="signin"/>
+      <IndexRedirect to="bets"/>
       <Route path="signin" component={RequireAuth(Signin)} />
       <Route path="signout" component={Signout} />
       <Route path="signup" component={Signup} />
       <Route path="bets" component={Bets} />
       <Route path="admin" component={Admin} />
+      <Route path="settings" component={Settings} />
     </Route>
   </Router>
 </Provider>

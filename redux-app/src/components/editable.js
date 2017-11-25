@@ -6,16 +6,25 @@ class Editable extends Component {
         super(props)
         this.state = {
             editing : false,
+            refreshing : false
         }
     }
 
     componentDidMount() {
+        //console.log('componentdidmount', this.props.bet.home)
         var bet = this.props.bet
         bet.betfair = {
             id : ''
         }
         this.setState({bet});
      }
+
+    componentWillReceiveProps(nextprops) {
+        if(this.props.bet != nextprops.bet) {
+        this.setState({bet : nextprops.bet});
+        }
+        this.setState({refreshing: false})
+    }
 
     onEdit() {
         this.setState({
@@ -35,6 +44,14 @@ class Editable extends Component {
     onSave = (e) => {
         this.onEdit();
         this.props.onSave(this.state.bet);
+    }
+
+    onRefresh= (e) => {
+        this.setState({
+            editing : false,
+            refreshing : true
+        })
+        this.props.onRefresh(this.state.bet);
     }
 
     formatDate (date) {
@@ -80,9 +97,10 @@ class Editable extends Component {
                     }
                
             </div>
-            <div className="col-sm-2">
+            {/* <div className="col-sm-2">
                 <input className="form-control"  type="text" value={this.state.bet.betfair.id} name="betfair"/>
-            </div>
+            </div> */}
+             
             <div className="col-sm-1">
                 {
                     this.state.editing?
@@ -90,7 +108,13 @@ class Editable extends Component {
                     
                 : <button className="btn btn-primary" onClick={this.onEdit.bind(this)}>Edit</button>
                 }
-            </div>        
+            </div>
+            
+            <div className="col-sm-1">
+                {
+                    <button className="btn btn-primary" onClick={this.onRefresh.bind(this)} disabled={this.state.editing || this.state.refreshing}>Refresh Data</button>
+                }
+            </div>       
         </div></div>)
     }
 
