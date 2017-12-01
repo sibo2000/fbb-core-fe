@@ -24,7 +24,7 @@ class Bet extends Component {
                                 <h2>{this.props.bet.home}</h2>
                             </div>
                             <div className="versus"><span className="divider"></span><span>V</span></div>
-                            <<div className={"grid team " + (this.props.bet.prediction == 2 ? 'toWin':'')}>
+                            <div className={"grid team " + (this.props.bet.prediction == 2 ? 'toWin':'')}>
                                 <h2>{this.props.bet.away}</h2>
                             </div>
                             <div className="band">
