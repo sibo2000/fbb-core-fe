@@ -36,13 +36,13 @@ export function fetchBetsByDate(time) {
     var query = '';
     switch(time) {
         case 'DATE_TODAY':
-        query = `&dateStart=${formatDate(today)}&dateEnd=${formatDate(today1)}`;
+        query = `?dateStart=${formatDate(today)}&dateEnd=${formatDate(today1)}`;
         break;
         case 'DATE_TODAY+1':
-        query = `&dateStart=${formatDate(today1)}&dateEnd=${formatDate(today2)}`;
+        query = `?dateStart=${formatDate(today1)}&dateEnd=${formatDate(today2)}`;
         break;
         case 'DATE_TODAY+2':
-        query = `&dateStart=${formatDate(today2)}&dateEnd=${formatDate(today3)}`;
+        query = `?dateStart=${formatDate(today2)}&dateEnd=${formatDate(today3)}`;
         break;
     }
     
