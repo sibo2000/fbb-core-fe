@@ -20,6 +20,7 @@
     "chai": "^3.5.0",
     "chai-jquery": "^2.0.0",
     "clean-webpack-plugin": "^0.1.17",
+    "express": "^4.16.2",
     "extract-text-webpack-plugin": "^2.1.2",
     "html-webpack-plugin": "^2.30.1",
     "jquery": "^2.2.1",
