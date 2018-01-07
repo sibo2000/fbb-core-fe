@@ -45,7 +45,7 @@ export function fetchBetsByDate(time) {
         query = `?dateStart=${formatDate(today2)}&dateEnd=${formatDate(today3)}`;
         break;
     }
-    
+
     let request = axios.get(url+query)
     
     return {
@@ -55,7 +55,9 @@ export function fetchBetsByDate(time) {
 }
 
 function formatDate(date) {
-    return date.toLocaleDateString().replace(/\//g, '-');
+    var d = date.toLocaleDateString().split('/')
+    d.splice(1,0,d.shift())
+    return d.join('-');
 }
 
 export function saveBet(bet) {
