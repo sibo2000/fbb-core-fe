@@ -20,11 +20,11 @@ class Bet extends Component {
                             <h3 className="panel-title">{this.props.bet.predictionType}</h3>
                         </div>
                         <div className="panel-body">
-                            <div className="grid team">
+                            <div className={"grid team " + (this.props.bet.prediction == 1 ? 'toWin':'')}>
                                 <h2>{this.props.bet.home}</h2>
                             </div>
                             <div className="versus"><span className="divider"></span><span>V</span></div>
-                            <div className="grid team">
+                            <div className={"grid team " + (this.props.bet.prediction == 2 ? 'toWin':'')}>
                                 <h2>{this.props.bet.away}</h2>
                             </div>
                             <div className="band">
@@ -36,14 +36,8 @@ class Bet extends Component {
                                 <p className="league"><span>{this.props.bet.league}</span></p>
                                 <p className="date">{this.formatDate( this.props.bet.eventDate )}</p>
                             </div>
-                            
                             <div>
-                                <div className="prediction">{((this.props.bet.prediction == 1 ?
-                                    'home':'away')+' win').toUpperCase()}</div>
-                                <div className="type">{this.props.bet.type}</div>
-                            </div>
-                            <div className="footer">
-                                <div className="confidence">{this.props.bet.confidence}</div>
+                                <div className="type">{this.props.bet.confidence} {this.props.bet.type}</div>
                                 <div className="grid odds">{this.props.bet.betfair? this.props.bet.betfair.price : '-'}</div>
                             </div>
                         </div>
